@@ -10,8 +10,8 @@ import org.hibernate.service.ServiceRegistry;
 import java.util.Properties;
 
 public class HibernateUtil {
-    private SessionFactory sessionFactory;
-    public SessionFactory getSessionFactory(){
+    private static SessionFactory sessionFactory;
+    public static SessionFactory getSessionFactory(){
         try {
             Configuration configuration = new Configuration();
             Properties settings = new Properties();
@@ -25,7 +25,11 @@ public class HibernateUtil {
 
             settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-            settings.put(Environment.HBM2DDL_AUTO, "update");
+            settings.put(Environment.HBM2DDL_AUTO, "none");
+            configuration.addAnnotatedClass(Customer.class);
+            configuration.addAnnotatedClass(Address.class);
+            configuration.addAnnotatedClass(Item.class);
+            configuration.addAnnotatedClass(Invoice.class);
 
             configuration.setProperties(settings);
 
