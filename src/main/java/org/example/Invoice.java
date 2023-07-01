@@ -11,7 +11,7 @@ public class Invoice {
     private Long id;
     private String number;
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "item_id")
+    @JoinColumn(name = "invoice_id")
     private List<Item> items;
     public Invoice() {
     }
